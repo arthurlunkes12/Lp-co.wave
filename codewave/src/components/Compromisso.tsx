@@ -48,13 +48,13 @@ export default NossoCompromisso;
 
 // Styled Components
 const Section = styled.section`
-  padding: 55px;
+  padding: 60px 5%;
   text-align: center;
-  background: rgb(138, 138, 138);
+  background: #f3f3f3;
 
   h2 {
     font-size: 2.5rem;
-    color: #fff;
+    color: #333;
     margin-bottom: 15px;
   }
 
@@ -62,7 +62,7 @@ const Section = styled.section`
     font-size: 1.2rem;
     max-width: 800px;
     margin: 0 auto 40px;
-    color: #fff;
+    color: #555;
   }
 `;
 
@@ -87,7 +87,7 @@ const Card = styled.div`
   background: white;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(226, 226, 226, 0.88);
+  box-shadow: 0 3px 6px rgba(19, 18, 19, 0.38);
   text-align: center;
   max-width: 350px;
   transition: transform 0.3s ease-in-out;

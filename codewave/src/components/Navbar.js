@@ -1,57 +1,22 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from "react";
 import styled from "styled-components";
 import { FiMenu, FiX } from "react-icons/fi"; // Ícones do menu
 import logo from "../assets/logo2.webp";
-
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const smoothScroll = (id: string) => {
-    const target = document.getElementById(id);
-    if (!target) return;
-
-    const targetPosition = target.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top: targetPosition - 80, behavior: "smooth" });
-
-    setMenuOpen(false);
-  };
-
-  return (
-    <Nav>
-      <NavContainer>
-        <LogoContainer>
-          <LogoImage src={logo} alt="Logo" />
-          <LogoText>
-            <span>CO</span>.WAVE
-          </LogoText>
-        </LogoContainer>
-
-        <Hamburger onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <FiX size={30} /> : <FiMenu size={30} />}
-        </Hamburger>
-
-        <NavLinks className={menuOpen ? "open" : ""}>
-          <NavLink onClick={() => smoothScroll("Inicio")}>Início</NavLink>
-          <NavLink onClick={() => smoothScroll("Sobre")}>Sobre</NavLink>
-          <NavLink onClick={() => smoothScroll("NossoCompromisso")}>
-            Compromisso
-          </NavLink>
-          <NavLink onClick={() => smoothScroll("Portifolio")}>
-            Portfólio
-          </NavLink>
-          <NavLink onClick={() => smoothScroll("FAQ")}>Faq</NavLink>
-          <ContactButton onClick={() => smoothScroll("Contato")}>
-            Contact
-          </ContactButton>
-        </NavLinks>
-      </NavContainer>
-    </Nav>
-  );
+    const [menuOpen, setMenuOpen] = useState(false);
+    const smoothScroll = (id) => {
+        const target = document.getElementById(id);
+        if (!target)
+            return;
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: targetPosition - 80, behavior: "smooth" });
+        setMenuOpen(false);
+    };
+    return (_jsx(Nav, { children: _jsxs(NavContainer, { children: [_jsxs(LogoContainer, { children: [_jsx(LogoImage, { src: logo, alt: "Logo" }), _jsxs(LogoText, { children: [_jsx("span", { children: "CO" }), ".WAVE"] })] }), _jsx(Hamburger, { onClick: () => setMenuOpen(!menuOpen), children: menuOpen ? _jsx(FiX, { size: 30 }) : _jsx(FiMenu, { size: 30 }) }), _jsxs(NavLinks, { className: menuOpen ? "open" : "", children: [_jsx(NavLink, { onClick: () => smoothScroll("Inicio"), children: "In\u00EDcio" }), _jsx(NavLink, { onClick: () => smoothScroll("Sobre"), children: "Sobre" }), _jsx(NavLink, { onClick: () => smoothScroll("NossoCompromisso"), children: "Compromisso" }), _jsx(NavLink, { onClick: () => smoothScroll("Portifolio"), children: "Portf\u00F3lio" }), _jsx(NavLink, { onClick: () => smoothScroll("FAQ"), children: "Faq" }), _jsx(ContactButton, { onClick: () => smoothScroll("Contato"), children: "Contact" })] })] }) }));
 };
-
 export default Navbar;
-
-const Nav = styled.nav`
+const Nav = styled.nav `
   width: 100%;
   position: fixed;
   top: 0;
@@ -67,8 +32,7 @@ const Nav = styled.nav`
     height: 70px;
   }
 `;
-
-const NavContainer = styled.div`
+const NavContainer = styled.div `
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -77,14 +41,12 @@ const NavContainer = styled.div`
   margin: 0 auto;
   padding: 0 15px;
 `;
-
-const LogoContainer = styled.div`
+const LogoContainer = styled.div `
   display: flex;
   align-items: center;
   gap: 12px;
 `;
-
-const LogoImage = styled.img`
+const LogoImage = styled.img `
   width: 120px;
   height: auto;
 
@@ -96,8 +58,7 @@ const LogoImage = styled.img`
     width: 70px;
   }
 `;
-
-const LogoText = styled.h1`
+const LogoText = styled.h1 `
   font-size: 26px;
   font-weight: bold;
   color: #1a202c;
@@ -113,8 +74,7 @@ const LogoText = styled.h1`
     font-size: 18px;
   }
 `;
-
-const Hamburger = styled.div`
+const Hamburger = styled.div `
   display: none;
   cursor: pointer;
   color: #333;
@@ -123,8 +83,7 @@ const Hamburger = styled.div`
     display: block;
   }
 `;
-
-const NavLinks = styled.div`
+const NavLinks = styled.div `
   display: flex;
   align-items: center;
   gap: 25px;
@@ -152,8 +111,7 @@ const NavLinks = styled.div`
     visibility: visible;
   }
 `;
-
-const NavLink = styled.a`
+const NavLink = styled.a `
   text-decoration: none;
   color: #333;
   font-size: 18px;
@@ -169,8 +127,7 @@ const NavLink = styled.a`
     font-size: 16px;
   }
 `;
-
-const ContactButton = styled.a`
+const ContactButton = styled.a `
   padding: 10px 20px;
   border: 2px solid #333;
   border-radius: 5px;

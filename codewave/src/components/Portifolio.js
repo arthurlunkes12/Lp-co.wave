@@ -1,62 +1,31 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import styled from "styled-components";
 import mockup1 from "../assets/mockup2.webp";
 import mockup3 from "../assets/mockup3.webp";
 import mockup4 from "../assets/mockup4.webp";
-
 const projects = [
-  {
-    image: mockup1,
-    title: "Site para Restaurantes",
-    description:
-      "Solução profissional para restaurantes destacarem seu cardápio e receberem pedidos online",
-  },
-  {
-    image: mockup4,
-    title: "E-commerce em geral",
-    description:
-      "Loja virtual completa para vendas online, com design elegante e intuitivo.",
-  },
-  {
-    image: mockup3,
-    title: "Agência Digital",
-    description:
-      "Site institucional para agências captarem leads e exibirem portfólio.",
-  },
+    {
+        image: mockup1,
+        title: "Site para Restaurantes",
+        description: "Solução profissional para restaurantes destacarem seu cardápio e receberem pedidos online",
+    },
+    {
+        image: mockup4,
+        title: "E-commerce em geral",
+        description: "Loja virtual completa para vendas online, com design elegante e intuitivo.",
+    },
+    {
+        image: mockup3,
+        title: "Agência Digital",
+        description: "Site institucional para agências captarem leads e exibirem portfólio.",
+    },
 ];
-
 const PortfolioSection = () => {
-  return (
-    <Section id="Portifolio">
-      <h2>Projetos que Transformam Ideias em Realidade</h2>
-      <p>
-        Não perca tempo! Solicite sua Landing Page ou Site sob medida hoje
-        mesmo.
-      </p>
-      <Grid>
-        {projects.map((project, index) => (
-          <Card key={index}>
-            <img
-              src={project.image}
-              alt={project.title}
-              loading="lazy"
-              width="280"
-              height="180"
-            />
-            <CardContent>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </Grid>
-    </Section>
-  );
+    return (_jsxs(Section, { id: "Portifolio", children: [_jsx("h2", { children: "Projetos que Transformam Ideias em Realidade" }), _jsx("p", { children: "N\u00E3o perca tempo! Solicite sua Landing Page ou Site sob medida hoje mesmo." }), _jsx(Grid, { children: projects.map((project, index) => (_jsxs(Card, { children: [_jsx("img", { src: project.image, alt: project.title, loading: "lazy", width: "280", height: "180" }), _jsxs(CardContent, { children: [_jsx("h3", { children: project.title }), _jsx("p", { children: project.description })] })] }, index))) })] }));
 };
-
 export default PortfolioSection;
-
 // Styled Components
-const Section = styled.section`
+const Section = styled.section `
   width: 100vw;
   overflow-x: hidden;
   padding: 55px 0;
@@ -76,8 +45,7 @@ const Section = styled.section`
     margin-bottom: 80px;
   }
 `;
-
-const Grid = styled.div`
+const Grid = styled.div `
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
@@ -89,8 +57,7 @@ const Grid = styled.div`
     gap: 20px;
   }
 `;
-
-const Card = styled.div`
+const Card = styled.div `
   background: white;
   border-radius: 10px;
   overflow: hidden;
@@ -109,8 +76,7 @@ const Card = styled.div`
     object-position: top;
   }
 `;
-
-const CardContent = styled.div`
+const CardContent = styled.div `
   padding: 15px;
 
   h3 {

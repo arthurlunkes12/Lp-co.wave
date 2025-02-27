@@ -1,12 +1,5 @@
-import React, { useState, useCallback, memo, Suspense, lazy } from "react";
+import React, { useState, useCallback, memo } from "react";
 import styled from "styled-components";
-
-const FaChevronDown = lazy(() =>
-  import("react-icons/fa").then((m) => ({ default: m.FaChevronDown }))
-);
-const FaChevronUp = lazy(() =>
-  import("react-icons/fa").then((m) => ({ default: m.FaChevronUp }))
-);
 
 const faqData = [
   {
@@ -37,7 +30,7 @@ const faqData = [
   {
     question: "Como posso entrar em contato para solicitar um orçamento?",
     answer:
-      "Você pode nos chamar pelo WhatsApp, e-mail ou preencher nosso formulário de contato na seção 'Fale Conosco'.",
+      "Você pode nos chamar clicando no botão do WhatsApp abaixo na sessão 'Fale Conosco', ou pelo nosso e-mail 'co.wavepages@gmail.com .",
   },
 ];
 
@@ -60,9 +53,11 @@ const FAQSection: React.FC = memo(() => {
           >
             <Question>
               {item.question}
-              <Suspense fallback={<span>...</span>}>
-                {openIndex === index ? <FaChevronUp /> : <FaChevronDown />}
-              </Suspense>
+              <i
+                className={`fa-solid ${
+                  openIndex === index ? "fa-chevron-up" : "fa-chevron-down"
+                }`}
+              ></i>
             </Question>
             <Answer $isOpen={openIndex === index}>{item.answer}</Answer>
           </FAQItem>
@@ -74,6 +69,7 @@ const FAQSection: React.FC = memo(() => {
 
 export default FAQSection;
 
+// Styled Components
 const Section = styled.section`
   padding: 55px;
   background: #f4f4f4;
@@ -117,6 +113,10 @@ const Question = styled.div`
   font-size: 1.1rem;
   font-weight: bold;
   color: #333;
+  i {
+    font-size: 1.2rem;
+    transition: 0.3s;
+  }
 `;
 
 const Answer = styled.p<{ $isOpen: boolean }>`

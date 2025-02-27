@@ -1,38 +1,13 @@
-import React, { lazy, Suspense, memo } from "react";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import styled from "styled-components";
-
-// Lazy Loading do ícone do WhatsApp
-const FaWhatsapp = lazy(() =>
-  import("react-icons/fa").then((module) => ({ default: module.FaWhatsapp }))
-);
-
-const CTASection: React.FC = memo(() => {
-  return (
-    <Section id="Contato">
-      <Title>Pronto para transformar sua ideia em realidade?</Title>
-      <Subtitle>
-        Fale conosco agora, tire suas dúvidas e receba um orçamento{" "}
-        <strong>gratuito!</strong>
-      </Subtitle>
-      <CTAButton
-        href="https://wa.me/seunumero"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Suspense fallback={<span>...</span>}>
-          <FaWhatsapp size={24} />
-        </Suspense>
-        Fale pelo WhatsApp
-      </CTAButton>
-    </Section>
-  );
-});
-
+import { FaWhatsapp } from "react-icons/fa";
+const CTASection = () => {
+    return (_jsxs(Section, { id: "Contato", children: [_jsx(Title, { children: "Pronto para transformar sua ideia em realidade?" }), _jsxs(Subtitle, { children: ["Fale conosco agora, tire suas duvidas e receba um or\u00E7amento", " ", _jsx("strong", { children: "gratuito!" })] }), _jsxs(CTAButton, { href: "https://wa.me/seunumero", target: "_blank", rel: "noopener noreferrer", children: [_jsx(FaWhatsapp, { size: 24 }), "Fale pelo WhatsApp"] })] }));
+};
 export default CTASection;
-
 // Styled Components
-const Section = styled.section`
-  background: #fff;
+const Section = styled.section `
+  background: rgb(255, 255, 255);
   padding: 55px 12%;
   text-align: center;
   display: flex;
@@ -41,8 +16,7 @@ const Section = styled.section`
   max-width: 1200px;
   margin: 0 auto;
 `;
-
-const Title = styled.h2`
+const Title = styled.h2 `
   font-size: 2.2rem;
   font-weight: bold;
   color: #222;
@@ -58,8 +32,7 @@ const Title = styled.h2`
     font-size: 1.5rem;
   }
 `;
-
-const Subtitle = styled.p`
+const Subtitle = styled.p `
   font-size: 1.2rem;
   color: #555;
   margin-bottom: 20px;
@@ -76,8 +49,7 @@ const Subtitle = styled.p`
     max-width: 100%;
   }
 `;
-
-const CTAButton = styled.a`
+const CTAButton = styled.a `
   display: flex;
   align-items: center;
   justify-content: center;

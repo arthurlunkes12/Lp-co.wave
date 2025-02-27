@@ -1,15 +1,34 @@
-import React from "react";
 import styled from "styled-components";
-import {
-  FaPython,
-  FaHtml5,
-  FaCss3Alt,
-  FaReact,
-  FaJs,
-  FaNodeJs,
-  FaWhatsapp,
-} from "react-icons/fa";
-import { SiDjango, SiTypescript } from "react-icons/si";
+import { lazy, Suspense, memo } from "react";
+
+// Lazy Loading para os ícones
+const FaWhatsapp = lazy(() =>
+  import("react-icons/fa").then((mod) => ({ default: mod.FaWhatsapp }))
+);
+const FaPython = lazy(() =>
+  import("react-icons/fa").then((mod) => ({ default: mod.FaPython }))
+);
+const FaHtml5 = lazy(() =>
+  import("react-icons/fa").then((mod) => ({ default: mod.FaHtml5 }))
+);
+const FaCss3Alt = lazy(() =>
+  import("react-icons/fa").then((mod) => ({ default: mod.FaCss3Alt }))
+);
+const FaJs = lazy(() =>
+  import("react-icons/fa").then((mod) => ({ default: mod.FaJs }))
+);
+const FaReact = lazy(() =>
+  import("react-icons/fa").then((mod) => ({ default: mod.FaReact }))
+);
+const FaNodeJs = lazy(() =>
+  import("react-icons/fa").then((mod) => ({ default: mod.FaNodeJs }))
+);
+const SiDjango = lazy(() =>
+  import("react-icons/si").then((mod) => ({ default: mod.SiDjango }))
+);
+const SiTypescript = lazy(() =>
+  import("react-icons/si").then((mod) => ({ default: mod.SiTypescript }))
+);
 
 const technologies = [
   { icon: <FaPython size={40} color="#3776AB" />, name: "Python" },
@@ -22,7 +41,7 @@ const technologies = [
   { icon: <FaNodeJs size={40} color="#83CD29" />, name: "Node.js" },
 ];
 
-const AboutSection = () => {
+const AboutSection = memo(() => {
   return (
     <Section id="Sobre">
       <Content>
@@ -35,7 +54,10 @@ const AboutSection = () => {
             inovação, performance e design responsivo em nossos projetos.
           </p>
           <Button href="https://wa.me/5511999999999" target="_blank">
-            <FaWhatsapp size={20} /> Vamos conversar?
+            <Suspense fallback={<span>...</span>}>
+              <FaWhatsapp size={20} />
+            </Suspense>
+            Vamos conversar?
           </Button>
         </TextContainer>
         <TechContainer>
@@ -43,7 +65,8 @@ const AboutSection = () => {
           <Icons>
             {technologies.map((tech, index) => (
               <Tech key={index}>
-                {tech.icon} {tech.name}
+                <Suspense fallback={<span>...</span>}>{tech.icon}</Suspense>
+                {tech.name}
               </Tech>
             ))}
           </Icons>
@@ -51,7 +74,7 @@ const AboutSection = () => {
       </Content>
     </Section>
   );
-};
+});
 
 export default AboutSection;
 
@@ -91,14 +114,6 @@ const TextContainer = styled.div`
     margin-top: 15px;
     color: #000;
   }
-  @media (max-width: 480px) {
-    h2 {
-      font-size: 1.5rem;
-    }
-    p {
-      font-size: 1.2rem;
-    }
-  }
 `;
 
 const TechContainer = styled.div`
@@ -116,10 +131,6 @@ const Icons = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  @media (max-width: 480px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
 `;
 
 const Tech = styled.div`
@@ -150,18 +161,5 @@ const Button = styled.a`
   &:hover {
     background: #1ebe57;
     transform: scale(1.05);
-  }
-
-  /* 🔥 Ajustes para telas menores 🔥 */
-  @media (max-width: 768px) {
-    font-size: 1.4rem; /* Aumenta o texto */
-    padding: 14px 30px; /* Botão maior */
-    background: #128c48; /* Verde mais escuro para melhor contraste */
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1.6rem; /* Ainda maior para telas muito pequenas */
-    padding: 16px 35px;
-    background: #0e6e38; /* Contraste máximo */
   }
 `;

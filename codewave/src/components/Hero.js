@@ -1,8 +1,9 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import heroImage from "../assets/BG.webp";
-
-const HeroSection = styled.section`
+import { FaWhatsapp } from "react-icons/fa";
+const HeroSection = styled.section `
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,6 +14,7 @@ const HeroSection = styled.section`
   position: relative;
   overflow: hidden;
   background: url(${heroImage}) no-repeat center center/cover;
+  box-sizing: border-box;
   padding: 0 20px;
 
   &::before {
@@ -36,25 +38,26 @@ const HeroSection = styled.section`
   @media (max-width: 768px) {
     min-height: 85vh;
   }
-`;
 
-const Title = styled.h1`
+  @media (max-width: 480px) {
+    min-height: 100vh;
+  }
+`;
+const Title = styled.h1 `
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: bold;
   color: white;
-  font-family: Arial;
+  font-family: monospace;
 `;
-
-const Subtitle = styled.p`
+const Subtitle = styled.p `
   font-size: clamp(1rem, 2.5vw, 1.8rem);
   margin-top: 10px;
   color: white;
-  font-family: Arial;
+  font-family: monospace;
   max-width: 80%;
-  min-height: 2rem;
+  word-wrap: break-word;
 `;
-
-const Button = styled.a`
+const Button = styled.a `
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,15 +66,11 @@ const Button = styled.a`
   padding: 14px 30px;
   background: #25d366;
   color: white;
-  font-size: clamp(1.3rem, 1.5vw, 1.8rem);
+  font-size: clamp(0.9rem, 1.5vw, 1.3rem);
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
   transition: transform 0.3s ease, background 0.3s;
-
-  i {
-    font-size: 1.5rem;
-  }
 
   &:hover {
     background: #1ebe57;
@@ -82,36 +81,19 @@ const Button = styled.a`
     transform: scale(1);
   }
 `;
-
 const Hero = () => {
-  const fullText =
-    "Criação, otimização e inovação para sua marca brilhar online!";
-  const [text, setText] = useState("");
-
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < fullText.length) {
-        setText((prev) => prev + fullText[index]);
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 25);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <HeroSection id="Inicio">
-      <Title>Co.wave</Title>
-      <Subtitle>{text}</Subtitle>
-      <Button href="https://wa.me/5511999999999" target="_blank">
-        <i className="fa-brands fa-whatsapp"></i>
-        Fale Conosco
-      </Button>
-    </HeroSection>
-  );
+    const fullText = "Criação, otimização e inovação para sua marca brilhar online!";
+    const [text, setText] = useState("");
+    const [index, setIndex] = useState(0);
+    useEffect(() => {
+        if (index < fullText.length) {
+            const timeout = setTimeout(() => {
+                setText((prev) => prev + fullText[index]);
+                setIndex((prev) => prev + 1);
+            }, 25); // Velocidade aumentada
+            return () => clearTimeout(timeout);
+        }
+    }, [index, fullText]);
+    return (_jsxs(HeroSection, { id: "Inicio", children: [_jsx(Title, { children: "Co.wave" }), _jsx(Subtitle, { children: text }), _jsxs(Button, { href: "https://wa.me/5511999999999", target: "_blank", children: [_jsx(FaWhatsapp, { size: 20 }), " Fale Conosco"] })] }));
 };
-
 export default Hero;
